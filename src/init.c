@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_forks.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 17:33:46 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/10/25 18:35:49 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/10/25 20:02:30 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,23 @@ int	init_forks(t_rules *rules)
 			free(rules->forks);
 			return (1);
 		}
+	}
+	return (0);
+}
+
+int	init_philosophers(t_philo *philo, t_rules *rules)
+{
+	int	i;
+
+	i = -1;
+	while (++i < rules->num_philos)
+	{
+		philo[i].id = i + 1;
+		philo[i].meals_eaten = 0;
+		philo[i].last_meal = 0;
+		philo[i].left_fork = &rules->forks[i];
+		philo[i].right_fork = &rules->forks[(i + 1) % rules->num_philos];
+		philo[i].rules = rules;
 	}
 	return (0);
 }
