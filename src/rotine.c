@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 23:26:21 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/10/28 19:19:21 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/10/28 19:53:55 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void sleep_filo(t_philo *philo, t_rules *rule, long long time_ms)
   precise_sleep(time_ms);
 }
 
-// void take_forks()
-// {
-  
-// }
+void take_forks(t_philo *philo, t_rules *rule)
+{
+  pthread_mutex_lock(philo->left_fork);
+  print_state(philo, rule, "has taken a fork");
+  pthread_mutex_lock(philo->right_fork);
+  print_state(philo, rule, "has taken a fork");
+}
