@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 16:14:28 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/10/25 17:45:31 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/10/27 23:41:29 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include <pthread.h>
 # include <stdlib.h>
+# include <stdio.h>
+# include <sys/time.h>
+
 
 typedef struct s_rules {
 	int		num_philos;
