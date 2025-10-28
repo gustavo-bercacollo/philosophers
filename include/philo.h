@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 16:14:28 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/10/28 17:00:51 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:50:10 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ typedef struct s_philo
 
 //utils
 void print_state(t_philo *philo, t_rules *rule, char *action);
+void think(t_philo *philo, t_rules *rule);
+long long get_time(void);
 
 #endif

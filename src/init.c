@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 17:33:46 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/10/28 00:21:20 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:49:33 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,4 @@ int	init_philosophers(t_philo *philo, t_rules *rules)
 		philo[i].rules = rules;
 	}
 	return (0);
-}
-
-void init_time(t_rules *rule)
-{
-  struct timeval current_time;
-  
-  long long time = gettimeofday(&current_time, NULL);
-  rule->start_time = (current_time.tv_sec * 1000LL) + (current_time.tv_usec / 1000);
 }
