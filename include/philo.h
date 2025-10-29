@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 16:14:28 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/10/28 19:15:54 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/10/28 19:59:42 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,7 @@ void print_state(t_philo *philo, t_rules *rule, char *action);
 void think(t_philo *philo, t_rules *rule);
 long long get_time(void);
 void precise_sleep(long long time_ms);
+void sleep_filo(t_philo *philo, t_rules *rule, long long time_ms);
+void take_forks(t_philo *philo, t_rules *rule);
 
 #endif
