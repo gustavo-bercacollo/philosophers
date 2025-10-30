@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:56:54 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/10/30 16:11:08 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/10/30 19:19:03 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*rotine(void *arg)
 	return (NULL);
 }
 
-void	check_is_dead(t_philo *philos, t_rules *rule)
+static void	check_is_dead(t_philo *philos, t_rules *rule)
 {
 	int		i;
 
@@ -69,3 +69,15 @@ void	*monitor(void *arg)
 	check_is_dead(philos, rule);
 	return (NULL);
 }
+
+// void	start_simulation(t_philo *philos, t_rules *rule)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (i < rule->num_philos)
+// 	{
+// 		pthread_create()
+// 	}
+	
+// }
