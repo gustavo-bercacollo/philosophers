@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 17:33:46 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/10/29 19:27:57 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/10/29 20:39:12 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	init_philosophers(t_philo *philo, t_rules *rules)
 	{
 		philo[i].id = i + 1;
 		philo[i].meals_eaten = 0;
-		philo[i].last_meal = 0;
+		philo[i].last_meal = get_time();
 		philo[i].left_fork = &rules->forks[i];
 		philo[i].right_fork = &rules->forks[(i + 1) % rules->num_philos];
 		philo[i].rule = rules;

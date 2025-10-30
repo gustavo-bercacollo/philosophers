@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 16:14:28 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/10/29 19:27:45 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/10/30 00:06:28 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-
 typedef struct s_rules {
 	int		num_philos;
 	long long	time_to_die;
@@ -28,6 +27,7 @@ typedef struct s_rules {
 	int		must_eat;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	write_mutex;
+	pthread_mutex_t	state_mutex;
 	long long	start_time;
 	int	dead;
 }	t_rules;

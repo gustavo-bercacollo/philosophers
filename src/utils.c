@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 23:41:39 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/10/28 19:15:39 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/10/29 23:09:50 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ long long get_time(void)
 void print_state(t_philo *philo, t_rules *rule, char *action)
 {
   long long now = get_time() - rule->start_time;
+  pthread_mutex_lock(&rule->write_mutex);
   printf("%lld %d %s\n", now, philo->id, action);
+  pthread_mutex_unlock(&rule->write_mutex);
 }
 
 void precise_sleep(long long time_ms)

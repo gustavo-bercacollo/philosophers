@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 23:26:21 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/10/29 00:58:43 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/10/29 23:24:50 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void take_forks(t_philo *philo, t_rules *rule)
   print_state(philo, rule, "has taken a fork");
 }
 
-void put_forks(t_philo *philo, t_rules *rule)
+void put_forks(t_philo *philo)
 {
   pthread_mutex_unlock(philo->left_fork);
   pthread_mutex_unlock(philo->right_fork);  
@@ -44,6 +44,6 @@ void eat(t_philo *philo, t_rules *rule)
   print_state(philo, rule, "is eating");
   philo->last_meal = get_time();
   precise_sleep(rule->time_to_eat);
-  put_forks(philo, rule);
+  put_forks(philo);
   philo->meals_eaten++;
 }
