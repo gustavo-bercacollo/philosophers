@@ -6,13 +6,13 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:56:54 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/10/30 19:19:03 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/10/31 20:10:34 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*rotine(void *arg)
+void	*routine(void *arg)
 {
 	t_philo	*philo;
 	t_rules	*rule;
@@ -34,7 +34,7 @@ void	*rotine(void *arg)
 
 static void	check_is_dead(t_philo *philos, t_rules *rule)
 {
-	int		i;
+	int	i;
 
 	while (!rule->dead)
 	{
@@ -70,14 +70,35 @@ void	*monitor(void *arg)
 	return (NULL);
 }
 
-// void	start_simulation(t_philo *philos, t_rules *rule)
-// {
-// 	int	i;
+void	start_simulation(t_philo *philos, t_rules *rule)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (i < rule->num_philos)
-// 	{
-// 		pthread_create()
-// 	}
-	
-// }
+	i = 0;
+	while (i < rule->num_philos)
+	{
+		if (pthread_create(&philos[i].thread_id, NULL, routine,
+				&philos[i]) != 0)
+		{
+			printf("Erro to create thread %d\n", i);
+			return ;
+		}
+		i++;
+	}
+	if (pthread_create(&rule->thread_monitor_id, NULL, monitor, philos))
+	{
+		printf("Erro to create the monitor thread %d\n", i);
+		return ;
+	}
+	i = 0;
+	while (i < rule->num_philos)
+	{
+		if (pthread_join(philos[i].thread_id, NULL))
+			printf("Erro to create the monitor thread %d\n", i);
+		i++;
+	}
+	if (pthread_join(rule->thread_monitor_id, NULL))
+		printf("Erro to create the monitor thread %d\n", i);
+}
+
+
