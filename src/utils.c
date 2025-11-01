@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 23:41:39 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/01 19:42:03 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:49:19 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,11 @@ int validate_args(int argc, char **argv)
 {
 	int i;
 	
-	if (argc != 6)
+	if (argc != 5 && argc != 6)
 	{
-		printf("Error, You need pass exactly 6 args\n");
+		printf("Error, You need pass 5 or 6 args\n");
 		return (0);
 	}
-		
 	i = 1;
 	while (i < argc)
 	{
