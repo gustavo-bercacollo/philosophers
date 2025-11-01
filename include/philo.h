@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 16:14:28 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/01 18:52:06 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:42:37 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,27 @@
 typedef struct s_rules
 {
 	int				num_philos;
+	int				must_eat;
+	int number_of_times_each_philosopher_must_eat;
+	int				dead;
 	long long		time_to_die;
 	long long		time_to_eat;
 	long long		time_to_sleep;
-	int				must_eat;
+	long long		start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	write_mutex;
 	pthread_mutex_t	state_mutex;
-	long long		start_time;
 	pthread_t		thread_monitor_id;
-	int				dead;
 }					t_rules;
 
 typedef struct s_philo
 {
 	int				id;
+	int				meals_eaten;
+	long long		last_meal;
 	pthread_t		thread_id;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	long long		last_meal;
-	int				meals_eaten;
 	t_rules			*rule;
 }					t_philo;
 
@@ -58,5 +59,6 @@ void				*routine(void *arg);
 void				*monitor(void *arg);
 void	start_simulation(t_philo *philos, t_rules *rule);
 int validate_args(int argc, char **argv);
+int	ft_atoi(const char *nptr);
 
 #endif

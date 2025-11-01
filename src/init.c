@@ -6,11 +6,24 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 17:33:46 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/01 19:08:41 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:44:30 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void init_rules(t_rules *rules, char **argv)
+{
+	rules->start_time = get_time();
+	rules->num_philos = ft_atoi(argv[1]); 
+	rules->time_to_die = ft_atoi(argv[2]); 
+	rules->time_to_eat = ft_atoi(argv[3]); 
+	rules->time_to_sleep = ft_atoi(argv[4]);
+	if (argv[5])
+		rules->number_of_times_each_philosopher_must_eat = argv[5];
+	else
+		rules->number_of_times_each_philosopher_must_eat = -1;
+}
 
 int	init_forks(t_rules *rules)
 {
