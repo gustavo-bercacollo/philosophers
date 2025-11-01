@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 17:33:46 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/10/29 20:39:12 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/01 19:08:41 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,3 +49,4 @@ int	init_philosophers(t_philo *philo, t_rules *rules)
 	}
 	return (0);
 }
+
