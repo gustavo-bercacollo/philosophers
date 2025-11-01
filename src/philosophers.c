@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:56:54 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/10/31 20:10:34 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:15:10 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	start_simulation(t_philo *philos, t_rules *rule)
 {
 	int	i;
 
-	i = 0;
-	while (i < rule->num_philos)
+	i = -1;
+	while (++i < rule->num_philos)
 	{
 		if (pthread_create(&philos[i].thread_id, NULL, routine,
 				&philos[i]) != 0)
@@ -83,22 +83,20 @@ void	start_simulation(t_philo *philos, t_rules *rule)
 			printf("Erro to create thread %d\n", i);
 			return ;
 		}
-		i++;
 	}
 	if (pthread_create(&rule->thread_monitor_id, NULL, monitor, philos))
 	{
 		printf("Erro to create the monitor thread %d\n", i);
 		return ;
 	}
-	i = 0;
-	while (i < rule->num_philos)
+	i = -1;
+	while (++i < rule->num_philos)
 	{
 		if (pthread_join(philos[i].thread_id, NULL))
-			printf("Erro to create the monitor thread %d\n", i);
-		i++;
+			printf("Erro to wait thread %d\n", i);
 	}
 	if (pthread_join(rule->thread_monitor_id, NULL))
-		printf("Erro to create the monitor thread %d\n", i);
+		printf("Erro to wait the monitor thread\n");
 }
 
 

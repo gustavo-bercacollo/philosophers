@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 16:14:28 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/10/31 18:18:32 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:18:44 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ void				take_forks(t_philo *philo, t_rules *rule);
 void				eat(t_philo *philo, t_rules *rule);
 void				*routine(void *arg);
 void				*monitor(void *arg);
+void	start_simulation(t_philo *philos, t_rules *rule);
 
 #endif
