@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:56:54 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/02 18:37:15 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/02 19:50:49 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*routine(void *arg)
 	while (!rule->dead)
 	{
 		eat(philo, rule);
-		if (rule->number_of_times_each_philosopher_must_eat > 0 && philo->meals_eaten >= rule->number_of_times_each_philosopher_must_eat)
+		if (rule->must_eat > 0 && philo->meals_eaten >= rule->must_eat)
 			break ;
 		sleep_filo(philo, rule, rule->time_to_sleep);
 		think(philo, rule);
@@ -32,42 +32,38 @@ void	*routine(void *arg)
 	return (NULL);
 }
 
+static void check_and_set_dead(t_philo *philos, t_rules *rule, int i)
+{
+	if ((get_time() - philos[i].last_meal) > rule->time_to_die)
+		{
+			pthread_mutex_lock(&rule->state_mutex);
+			if (!rule->dead)
+			{
+				rule->dead = 1;
+				pthread_mutex_unlock(&rule->state_mutex);
+				print_state(&philos[i], rule, "died");
+				return ;
+			}
+			pthread_mutex_unlock(&rule->state_mutex);
+		}
+}
 static void	check_finish_or_dead(t_philo *philos, t_rules *rule)
 {
 	int	i;
 	int	finished_count;
 
-	while (1)
+	while (!rule->dead)
 	{
-		i = 0;
+		i = -1;
 		finished_count = 0;
-		while (i < rule->num_philos)
+		while (++i < rule->num_philos)
 		{
-			if (rule->number_of_times_each_philosopher_must_eat > 0)
-			{
-				if (philos[i].meals_eaten >= rule->number_of_times_each_philosopher_must_eat)
+			if (rule->must_eat > 0 && philos[i].meals_eaten >= rule->must_eat)
 					finished_count++;
-			}
-			else
-			{
-				if ((get_time() - philos[i].last_meal) > rule->time_to_die)
-				{
-					pthread_mutex_lock(&rule->state_mutex);
-					if (!rule->dead)
-					{
-						rule->dead = 1;
-						pthread_mutex_unlock(&rule->state_mutex);
-						print_state(&philos[i], rule, "died");
-						return ;
-					}
-					pthread_mutex_unlock(&rule->state_mutex);
-				}
-			}
-			i++;
+			else if (rule->must_eat <= 0)
+				check_and_set_dead(philos, rule, i);
 		}
-
-		if (rule->number_of_times_each_philosopher_must_eat > 0
-			&& finished_count == rule->num_philos)
+		if (rule->must_eat > 0 && finished_count == rule->num_philos)
 		{
 			pthread_mutex_lock(&rule->state_mutex);
 			rule->dead = 1;

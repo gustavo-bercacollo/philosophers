@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 16:14:28 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/02 16:31:48 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/02 19:36:03 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 typedef struct s_rules
 {
 	int				num_philos;
-	int number_of_times_each_philosopher_must_eat;
+	int must_eat;
 	int				dead;
 	long long		time_to_die;
 	long long		time_to_eat;

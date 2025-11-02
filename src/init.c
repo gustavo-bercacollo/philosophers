@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 17:33:46 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/02 16:31:57 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/02 19:36:57 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int init_rules(t_rules *rules, char **argv)
 	rules->time_to_eat = ft_atoi(argv[3]); 
 	rules->time_to_sleep = ft_atoi(argv[4]);
 	if (argv[5])
-		rules->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
+		rules->must_eat = ft_atoi(argv[5]);
 	else
-		rules->number_of_times_each_philosopher_must_eat = -1;
+		rules->must_eat = -1;
 	if (pthread_mutex_init(&rules->state_mutex, NULL) != 0)
 	{
 		printf("Error: failed to init state_mutex\n");
