@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 16:14:28 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/01 22:04:03 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/02 16:31:48 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void				*monitor(void *arg);
 void	start_simulation(t_philo *philos, t_rules *rule);
 int validate_args(int argc, char **argv);
 int	ft_atoi(const char *nptr);
-void init_rules(t_rules *rules, char **argv);
+int init_rules(t_rules *rules, char **argv);
 int	init_philosophers(t_philo *philo, t_rules *rules);
 void destroy_all_mutex(t_rules *rules);
 int	init_forks(t_rules *rules);

@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:56:54 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/02 14:26:20 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/02 16:31:41 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	rule = philo->rule;
 	if (philo->id % 2 == 0)
-		usleep(1000);
+		usleep(100 * 1000);
 	while (!rule->dead)
 	{
 		eat(philo, rule);
@@ -34,14 +34,19 @@ void	*routine(void *arg)
 
 static void	check_is_dead(t_philo *philos, t_rules *rule)
 {
-	int	i;
+	int			i;
+	long long	last_meal;
 
 	while (!rule->dead)
 	{
 		i = 0;
 		while (i < rule->num_philos && !rule->dead)
 		{
-			if ((get_time() - philos[i].last_meal) > rule->time_to_die)
+			pthread_mutex_lock(&rule->state_mutex);
+			last_meal = philos[i].last_meal;
+			pthread_mutex_unlock(&rule->state_mutex);
+
+			if ((get_time() - last_meal) > rule->time_to_die)
 			{
 				pthread_mutex_lock(&rule->state_mutex);
 				if (!rule->dead)
@@ -58,6 +63,7 @@ static void	check_is_dead(t_philo *philos, t_rules *rule)
 		}
 	}
 }
+
 
 void	*monitor(void *arg)
 {
