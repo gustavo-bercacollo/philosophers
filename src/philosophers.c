@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:56:54 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/01 16:15:10 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/02 14:26:20 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*routine(void *arg)
 	while (!rule->dead)
 	{
 		eat(philo, rule);
-		if (rule->must_eat > 0 && philo->meals_eaten >= rule->must_eat)
+		if (rule->number_of_times_each_philosopher_must_eat > 0 && philo->meals_eaten >= rule->number_of_times_each_philosopher_must_eat)
 			break ;
 		sleep_filo(philo, rule, rule->time_to_sleep);
 		think(philo, rule);

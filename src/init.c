@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 17:33:46 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/01 20:29:15 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/01 22:12:55 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void init_rules(t_rules *rules, char **argv)
 {
 	rules->start_time = get_time();
+	rules->dead = 0;
+	rules->forks = NULL;
 	rules->num_philos = ft_atoi(argv[1]); 
 	rules->time_to_die = ft_atoi(argv[2]); 
 	rules->time_to_eat = ft_atoi(argv[3]); 
@@ -23,7 +25,11 @@ void init_rules(t_rules *rules, char **argv)
 		rules->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
 	else
 		rules->number_of_times_each_philosopher_must_eat = -1;
-}
+	if (pthread_mutex_init(&rules->state_mutex, NULL) != 0)
+		 printf("Error: failed to init state_mutex\n");
+	if (pthread_mutex_init(&rules->write_mutex, NULL) != 0)
+		 printf("Error: failed to init write_mutex\n");
+	}
 
 int	init_forks(t_rules *rules)
 {
