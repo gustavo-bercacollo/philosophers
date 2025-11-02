@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 21:31:12 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/02 14:19:06 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/02 19:59:03 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,9 @@ void destroy_all_mutex(t_rules *rules)
       pthread_mutex_destroy(&rules->forks[i]);
   pthread_mutex_destroy(&rules->state_mutex);
 	pthread_mutex_destroy(&rules->write_mutex);
+}
+void free_forks_and_philo(t_philo *philos, t_rules *rule)
+{
+  free(rule->forks);
+  free(philos);
 }

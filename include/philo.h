@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 16:14:28 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/02 19:36:03 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/02 19:59:22 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ int init_rules(t_rules *rules, char **argv);
 int	init_philosophers(t_philo *philo, t_rules *rules);
 void destroy_all_mutex(t_rules *rules);
 int	init_forks(t_rules *rules);
+void free_forks_and_philo(t_philo *philos, t_rules *rule);
 
 #endif
