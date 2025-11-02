@@ -11,6 +11,7 @@ CFLAGS = -Wall -Wextra -Werror -Iinclude
 SRC = src/main.c \
       src/utils.c \
       src/rotine.c \
+			src/philosophers.c \
       src/init.c
 
 # Geração automática dos objetos (.o)

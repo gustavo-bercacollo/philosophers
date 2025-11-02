@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 17:21:28 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/01 21:52:11 by gbercaco         ###   ########.fr       */
+/*   Created: 2025/11/01 21:31:12 by gbercaco          #+#    #+#             */
+/*   Updated: 2025/11/01 21:50:47 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+void destroy_all_mutex(t_rules *rules)
 {
-	t_rules	rules;
-	t_philo	*philos;
+    int i;
 
-	if (!validate_args(argc, argv))
-		return (1);
-	init_rules(&rules, argv);
-	
-	philos = malloc(rules.num_philos * sizeof(t_philo));
-	if (!philos)
-		return (1);
-	init_philosophers(philos, &rules);
-	start_simulation(philos, &rules);
-	destroy_all_mutex(&rules);
-	free(rules.forks);
-	free(philos);
-	return (0);
+    i = -1;
+    while (++i < rules->num_philos)
+        pthread_mutex_destroy(&rules->forks[i]);
 }
