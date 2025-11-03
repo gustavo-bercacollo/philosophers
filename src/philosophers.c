@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:56:54 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/02 23:27:32 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/03 15:32:37 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,36 +23,38 @@ void	*routine(void *arg)
 		usleep(100 * 1000);
 	while (!rule->dead)
 	{
-		if (rule->dead || (rule->must_eat > 0 && philo->meals_eaten >= rule->must_eat))
-			break;
+		if (rule->dead || (rule->must_eat > 0
+				&& philo->meals_eaten >= rule->must_eat))
+			break ;
 		if (rule->dead)
-			break;
+			break ;
 		eat(philo, rule);
 		if (rule->dead)
-			break;
+			break ;
 		sleep_filo(philo, rule, rule->time_to_sleep);
 		if (rule->dead)
-			break;
+			break ;
 		think(philo, rule);
 	}
 	return (NULL);
 }
 
-static void check_and_set_dead(t_philo *philos, t_rules *rule, int i)
+static void	check_and_set_dead(t_philo *philos, t_rules *rule, int i)
 {
 	if ((get_time() - philos[i].last_meal) > rule->time_to_die)
+	{
+		pthread_mutex_lock(&rule->state_mutex);
+		if (!rule->dead)
 		{
-			pthread_mutex_lock(&rule->state_mutex);
-			if (!rule->dead)
-			{
-				rule->dead = 1;
-				pthread_mutex_unlock(&rule->state_mutex);
-				print_state(&philos[i], rule, "died");
-				return ;
-			}
+			rule->dead = 1;
 			pthread_mutex_unlock(&rule->state_mutex);
+			print_state(&philos[i], rule, "died");
+			return ;
 		}
+		pthread_mutex_unlock(&rule->state_mutex);
+	}
 }
+
 static void	check_finish_or_dead(t_philo *philos, t_rules *rule)
 {
 	int	i;
@@ -66,7 +68,7 @@ static void	check_finish_or_dead(t_philo *philos, t_rules *rule)
 		{
 			check_and_set_dead(philos, rule, i);
 			if (rule->must_eat > 0 && philos[i].meals_eaten >= rule->must_eat)
-					finished_count++;
+				finished_count++;
 		}
 		if (rule->must_eat > 0 && finished_count == rule->num_philos)
 		{
@@ -118,5 +120,3 @@ void	start_simulation(t_philo *philos, t_rules *rule)
 	if (pthread_join(rule->thread_monitor_id, NULL))
 		printf("Erro to wait the monitor thread\n");
 }
-
-

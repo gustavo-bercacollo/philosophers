@@ -6,16 +6,16 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:11:23 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/02 23:11:36 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/03 15:33:40 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int validate_args(int argc, char **argv)
+int	validate_args(int argc, char **argv)
 {
-	int i;
-	
+	int	i;
+
 	if (argc != 5 && argc != 6)
 	{
 		printf("Error, You need pass 5 or 6 args\n");
@@ -31,5 +31,5 @@ int validate_args(int argc, char **argv)
 		}
 		i++;
 	}
-	return (1);	
+	return (1);
 }

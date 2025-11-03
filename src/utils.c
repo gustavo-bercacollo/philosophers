@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 23:41:39 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/02 23:11:19 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/03 16:55:28 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int	ft_atoi(const char *nptr)
 	i = 0;
 	sign = 1;
 	result = 0;
-	while ((nptr[i] == 32) || (nptr[i] >= 9
-			&& nptr[i] <= 13))
+	while ((nptr[i] == 32) || (nptr[i] >= 9 && nptr[i] <= 13))
 		i++;
 	if (nptr[i] == '-' || nptr[i] == '+')
 	{
@@ -38,18 +37,20 @@ int	ft_atoi(const char *nptr)
 	return (result * sign);
 }
 
-int is_positive_number(char *str)
+int	is_positive_number(char *str)
 {
-    int i = 0;
-    if (!str || str[0] == '\0')
-        return 0;
-    while (str[i])
-    {
-			if (str[i] < '0' || str[i] > '9')
-				return 0;
-			i++;
-    }
-    return 1;
+	int	i;
+
+	i = 0;
+	if (!str || str[0] == '\0')
+		return (0);
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 long long	get_time(void)
@@ -57,7 +58,7 @@ long long	get_time(void)
 	struct timeval	current_time;
 
 	gettimeofday(&current_time, NULL);
-	return (current_time.tv_sec * 1000LL) + (current_time.tv_usec / 1000);
+	return ((current_time.tv_sec * 1000LL) + (current_time.tv_usec / 1000));
 }
 
 void	print_state(t_philo *philo, t_rules *rule, char *action)
