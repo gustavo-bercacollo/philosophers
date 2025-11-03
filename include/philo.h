@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 16:14:28 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/02 19:59:22 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/02 23:36:51 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,34 @@ typedef struct s_philo
 	t_rules			*rule;
 }					t_philo;
 
-// utils
-void				print_state(t_philo *philo, t_rules *rule, char *action);
-void				think(t_philo *philo, t_rules *rule);
-long long			get_time(void);
-void				precise_sleep(long long time_ms);
-void				sleep_filo(t_philo *philo, t_rules *rule,
-						long long time_ms);
-void				take_forks(t_philo *philo, t_rules *rule);
+// init
+int init_rules(t_rules *rules, char **argv);
+int	init_forks(t_rules *rules);
+int	init_philosophers(t_philo *philo, t_rules *rules);
+
+// rotine
+void	think(t_philo *philo, t_rules *rule);
 void				eat(t_philo *philo, t_rules *rule);
+void				sleep_filo(t_philo *philo, t_rules *rule, long long time_ms);
+void				take_forks(t_philo *philo, t_rules *rule);
+
+// philosophres
 void				*routine(void *arg);
 void				*monitor(void *arg);
 void	start_simulation(t_philo *philos, t_rules *rule);
+
+// validate
 int validate_args(int argc, char **argv);
-int	ft_atoi(const char *nptr);
-int init_rules(t_rules *rules, char **argv);
-int	init_philosophers(t_philo *philo, t_rules *rules);
+
+// free
 void destroy_all_mutex(t_rules *rules);
-int	init_forks(t_rules *rules);
 void free_forks_and_philo(t_philo *philos, t_rules *rule);
+
+// utils
+int	ft_atoi(const char *nptr);
+int is_positive_number(char *str);
+long long			get_time(void);
+void				print_state(t_philo *philo, t_rules *rule, char *action);
+void				precise_sleep(long long time_ms);
 
 #endif

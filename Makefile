@@ -13,6 +13,7 @@ SRC = src/main.c \
       src/rotine.c \
 			src/philosophers.c \
 			src/free.c \
+			src/validate.c \
       src/init.c
 
 # Geração automática dos objetos (.o)
