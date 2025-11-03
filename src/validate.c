@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:11:23 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/03 15:33:40 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/03 18:58:27 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,17 @@ int	validate_args(int argc, char **argv)
 		i++;
 	}
 	return (1);
+}
+
+void	validate_if_have_one_philo(t_philo *philo, t_rules *rule)
+{
+	if (rule->num_philos == 1)
+	{
+		print_state(philo, rule, "has taken a fork");
+		precise_sleep(rule->time_to_die);
+		print_state(philo, rule, "died");
+		rule->dead = 1;
+		return ;
+	}
+	return ;
 }
