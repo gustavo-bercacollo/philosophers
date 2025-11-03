@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:56:54 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/03 18:59:36 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/03 19:01:41 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	rule = philo->rule;
-
 	validate_if_have_one_philo(philo, rule);
 	if (philo->id % 2 == 0)
 		usleep(100 * 1000);
