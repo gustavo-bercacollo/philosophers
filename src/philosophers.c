@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:56:54 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/02 19:50:49 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/02 22:39:02 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,16 @@ void	*routine(void *arg)
 		usleep(100 * 1000);
 	while (!rule->dead)
 	{
+		if (rule->dead || (rule->must_eat > 0 && philo->meals_eaten >= rule->must_eat))
+			break;
+		if (rule->dead)
+			break;
 		eat(philo, rule);
-		if (rule->must_eat > 0 && philo->meals_eaten >= rule->must_eat)
-			break ;
+		if (rule->dead)
+			break;
 		sleep_filo(philo, rule, rule->time_to_sleep);
+		if (rule->dead)
+			break;
 		think(philo, rule);
 	}
 	return (NULL);
@@ -58,10 +64,9 @@ static void	check_finish_or_dead(t_philo *philos, t_rules *rule)
 		finished_count = 0;
 		while (++i < rule->num_philos)
 		{
+			check_and_set_dead(philos, rule, i);
 			if (rule->must_eat > 0 && philos[i].meals_eaten >= rule->must_eat)
 					finished_count++;
-			else if (rule->must_eat <= 0)
-				check_and_set_dead(philos, rule, i);
 		}
 		if (rule->must_eat > 0 && finished_count == rule->num_philos)
 		{

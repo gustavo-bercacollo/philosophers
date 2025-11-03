@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 23:41:39 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/01 19:49:19 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/02 23:11:19 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int is_positive_number(char *str)
         return 0;
     while (str[i])
     {
-        if (str[i] < '0' || str[i] > '9')
-            return 0;
-        i++;
+			if (str[i] < '0' || str[i] > '9')
+				return 0;
+			i++;
     }
     return 1;
 }
@@ -77,25 +77,4 @@ void	precise_sleep(long long time_ms)
 	start = get_time();
 	while (get_time() - start < time_ms)
 		usleep(100);
-}
-int validate_args(int argc, char **argv)
-{
-	int i;
-	
-	if (argc != 5 && argc != 6)
-	{
-		printf("Error, You need pass 5 or 6 args\n");
-		return (0);
-	}
-	i = 1;
-	while (i < argc)
-	{
-		if (!is_positive_number(argv[i]))
-		{
-			printf("Error: argument %d is not a positive number\n", i);
-			return (0);
-		}
-		i++;
-	}
-	return (1);	
 }
