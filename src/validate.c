@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:11:23 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/03 18:58:27 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/04 13:23:09 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,3 +46,16 @@ void	validate_if_have_one_philo(t_philo *philo, t_rules *rule)
 	}
 	return ;
 }
+
+int	is_dead(t_rules *rule)
+{
+	pthread_mutex_lock(&rule->state_mutex);
+	if (rule->dead)
+	{
+		pthread_mutex_unlock(&rule->state_mutex);
+		return (1);
+	}
+	pthread_mutex_unlock(&rule->state_mutex);
+	return (0);
+}
+
