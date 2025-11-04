@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 23:11:23 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/04 13:38:06 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/04 16:20:07 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,3 @@ int	is_dead(t_rules *rule)
 	pthread_mutex_unlock(&rule->state_mutex);
 	return (dead);
 }
-
-
