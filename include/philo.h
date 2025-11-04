@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 16:14:28 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/04 16:15:10 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/04 16:53:27 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,8 @@ int					is_positive_number(char *str);
 long long			get_time(void);
 void				print_state(t_philo *philo, t_rules *rule, char *action);
 void				precise_sleep(long long time_ms);
+
+// print_dead
+void				print_death(t_philo *philo, t_rules *rule);
 
 #endif

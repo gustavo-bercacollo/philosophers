@@ -8,6 +8,7 @@ SRC = src/main.c \
       src/philosophers.c \
       src/free.c \
       src/validate.c \
+      src/print_dead.c \
       src/init.c
 
 OBJ = $(SRC:.c=.o)

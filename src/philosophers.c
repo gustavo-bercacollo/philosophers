@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:56:54 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/04 16:15:13 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/04 17:00:41 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	check_and_set_dead(t_philo *philos, t_rules *rule, int i)
 		{
 			rule->dead = 1;
 			pthread_mutex_unlock(&rule->state_mutex);
-			print_state(&philos[i], rule, "died");
+			print_death(&philos[i], rule);
 			return ;
 		}
 		pthread_mutex_unlock(&rule->state_mutex);
