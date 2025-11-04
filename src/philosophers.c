@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:56:54 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/03 19:01:41 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/04 13:42:50 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,17 @@ void	*routine(void *arg)
 	validate_if_have_one_philo(philo, rule);
 	if (philo->id % 2 == 0)
 		usleep(100 * 1000);
-	while (!rule->dead)
+	while (!is_dead(rule))
 	{
-		if (rule->dead || (rule->must_eat > 0
-				&& philo->meals_eaten >= rule->must_eat))
+		if (rule->must_eat > 0 && philo->meals_eaten >= rule->must_eat)
 			break ;
-		if (rule->dead)
+		if (is_dead(rule))
 			break ;
 		eat(philo, rule);
-		if (rule->dead)
+		if (is_dead(rule))
 			break ;
 		sleep_filo(philo, rule, rule->time_to_sleep);
-		if (rule->dead)
+		if (is_dead(rule))
 			break ;
 		think(philo, rule);
 	}
@@ -61,7 +60,7 @@ static void	check_finish_or_dead(t_philo *philos, t_rules *rule)
 	int	i;
 	int	finished_count;
 
-	while (!rule->dead)
+	while (!is_dead(rule))
 	{
 		i = -1;
 		finished_count = 0;

@@ -6,7 +6,7 @@
 /*   By: gbercaco <gbercaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 16:14:28 by gbercaco          #+#    #+#             */
-/*   Updated: 2025/11/03 18:59:11 by gbercaco         ###   ########.fr       */
+/*   Updated: 2025/11/04 13:28:24 by gbercaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void				start_simulation(t_philo *philos, t_rules *rule);
 // validate
 int					validate_args(int argc, char **argv);
 void				validate_if_have_one_philo(t_philo *philo, t_rules *rule);
+int					is_dead(t_rules *rule);
 
 // free
 void				destroy_all_mutex(t_rules *rules);
