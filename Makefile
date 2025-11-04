@@ -5,9 +5,9 @@ CFLAGS = -Wall -Wextra -Werror -g3 -Iinclude
 SRC = src/main.c \
       src/utils.c \
       src/rotine.c \
-			src/philosophers.c \
-			src/free.c \
-			src/validate.c \
+      src/philosophers.c \
+      src/free.c \
+      src/validate.c \
       src/init.c
 
 OBJ = $(SRC:.c=.o)
